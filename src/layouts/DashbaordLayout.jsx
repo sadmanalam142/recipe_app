@@ -26,7 +26,7 @@ export default function DashbaordLayout() {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-60 min-h-screen bg-base-200 text-base-content flex flex-col justify-between">
+        <ul className="menu p-4 w-60 min-h-screen bg-red-200 text-base-content flex flex-col justify-between rounded-r-xl">
           {/* Sidebar content here */}
           <div>
             <li>

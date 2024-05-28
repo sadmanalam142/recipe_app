@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const EditRecipe = () => {
   const { id } = useParams();
@@ -44,6 +46,7 @@ const EditRecipe = () => {
     };
 
     await axios.patch(`http://localhost:3000/recipes/${id}`, recipeData);
+    toast("Items updated successfully!");
   };
   return (
     <div className="w-full px-16">
@@ -94,11 +97,12 @@ const EditRecipe = () => {
         <div className="mb-4">
           <input
             type="submit"
-            value={"Add Recipe"}
+            value={"Update Recipe"}
             className="w-full btn py-3 px-5 border btn-neutral"
           />
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

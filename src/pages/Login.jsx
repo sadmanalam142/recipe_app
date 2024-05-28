@@ -2,12 +2,22 @@ import { Link, useNavigate } from "react-router-dom";
 
 import GoogleLogin from "../components/Auth/GoogleLogin";
 import { useEffect } from "react";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function Login() {
   const [user, loading] = useAuthState(auth);
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    signInWithEmailAndPassword(auth, email, password);
+  };
+  
   let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
@@ -29,13 +39,14 @@ export default function Login() {
         </div>
         <div className="flex justify-end">
           <div className="card shrink-0 w-full max-w-md shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleSubmit} className="card-body">
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
                   required
@@ -47,6 +58,7 @@ export default function Login() {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
                   required
