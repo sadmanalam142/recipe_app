@@ -16,7 +16,7 @@ export default function Login() {
     }
   }, [user, loading, navigate, from]);
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 px-24">
       <div className="hero-content grid lg:grid-cols-2">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold">Login now!</h1>
